@@ -1,4 +1,4 @@
-# Struts2 PDF stream Plug-in
+# Struts2 PDF Stream Plugin
 
 The PDF stream plugin allows to transform a view into a PDF stream and return it as a result from Action. 
 
@@ -16,6 +16,13 @@ Supported views:
 - PDF content styling using CSS
 - Support of wide range of characters in PDF thanks to the [DejaVu fonts](http://dejavu-fonts.org/)
 - Can process even malformed HTML thanks to the [jsoup](http://jsoup.org/)
+
+
+## Showcase
+
+Showcase application can be downloaded from the Maven Central Repository.
+
+[Download struts2-pdfstream-showcase](http://search.maven.org/remotecontent?filepath=com/amashchenko/struts2/pdfstream/struts2-pdfstream-showcase/1.2.2/struts2-pdfstream-showcase-1.2.2.war)
 
 
 ## Contributing
