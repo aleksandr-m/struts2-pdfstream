@@ -21,7 +21,7 @@
     <artifactId>struts2-pdfstream-parent</artifactId>
     <packaging>pom</packaging>
     <name>struts2-pdfstream-parent</name>
-    <version>1.2.2</version>
+    <version>1.2.3-SNAPSHOT</version>
  
     <description>Parent POM for struts2-pdfstream.</description>
  

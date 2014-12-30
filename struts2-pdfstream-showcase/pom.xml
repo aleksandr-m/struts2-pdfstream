@@ -20,7 +20,7 @@
     <parent>
         <groupId>com.amashchenko.struts2.pdfstream</groupId>
         <artifactId>struts2-pdfstream-parent</artifactId>
-        <version>1.2.2</version>
+        <version>1.2.3-SNAPSHOT</version>
     </parent>
     <artifactId>struts2-pdfstream-showcase</artifactId>
     <packaging>war</packaging>
