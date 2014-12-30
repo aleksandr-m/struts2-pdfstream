@@ -73,7 +73,7 @@ For the Apache Tiles 3.x support the `struts2-pdfstream-tiles3`.
 
 ### JSP to PDF stream
 
-    <action name="jspToPdf" class="com.amashchenko.struts2.pdfstream.showcase.PdfStreamAction">
+    <action name="jspToPdf">
         <result type="pdfstream">
             <param name="location">/WEB-INF/pages/table.jsp</param>
             <param name="cssPaths">css/bootstrap.min.css, css/style.css</param>
@@ -83,7 +83,7 @@ For the Apache Tiles 3.x support the `struts2-pdfstream-tiles3`.
 
 ### Tiles definition to PDF stream
 
-    <action name="tilesToPdf" class="com.amashchenko.struts2.pdfstream.showcase.PdfStreamAction">
+    <action name="tilesToPdf">
         <result type="pdfstream">
             <param name="location">table</param>
             <param name="renderer">tiles</param>
@@ -93,7 +93,7 @@ For the Apache Tiles 3.x support the `struts2-pdfstream-tiles3`.
 
 ### FreeMarker template to PDF stream
 
-    <action name="freemarkerToPdf" class="com.amashchenko.struts2.pdfstream.showcase.PdfStreamAction">
+    <action name="freemarkerToPdf">
         <result type="pdfstream">
             <param name="location">/WEB-INF/ftl/table.ftl</param>
             <param name="renderer">freemarker</param>
