@@ -1,6 +1,6 @@
 # Struts2 PDF Stream Plugin
 
-The PDF Stream plugin allows to transform a view into a PDF stream and return it as a result from Action. 
+The PDF Stream plugin allows to transform a view into a PDF stream and return it as a result from Action.
 
 Supported views:
 
