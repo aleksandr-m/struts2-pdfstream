@@ -26,7 +26,7 @@
     <packaging>jar</packaging>
     <name>struts2-pdfstream-plugin</name>
 
-    <description>Struts2 PDF Stream Plug-in. A Struts2 plug-in for creating PDF streams from views.</description>
+    <description>Struts2 PDF Stream Plugin. This plugin allows to transform a view into a PDF stream and return it as a result from Action.</description>
  
     <inceptionYear>2014</inceptionYear>
 

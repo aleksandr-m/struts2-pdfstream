@@ -26,7 +26,7 @@
     <packaging>war</packaging>
     <name>struts2-pdfstream-showcase</name>
  	
-    <description>Struts2 PDF Stream Plug-in Showcase.</description>
+    <description>Showcase application for Struts2 PDF Stream Plugin.</description>
  
     <inceptionYear>2014</inceptionYear>
 
