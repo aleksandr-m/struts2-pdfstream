@@ -31,13 +31,13 @@
             <result type="tiles">homepage</result>
         </action>
 
-        <action name="table" method="createList" class="com.amashchenko.struts2.pdfstream.showcase.PdfStreamAction">
-            <result type="tiles">table</result>
+        <action name="example" method="createList" class="com.amashchenko.struts2.pdfstream.showcase.PdfStreamAction">
+            <result type="tiles">example</result>
         </action>
 
         <action name="tilesToPdf" method="createList" class="com.amashchenko.struts2.pdfstream.showcase.PdfStreamAction">
             <result type="pdfstream">
-                <param name="location">table</param>
+                <param name="location">example</param>
                 <param name="renderer">tiles</param>
                 <param name="contentDisposition">attachment;filename=tilespdf.pdf</param>
             </result>
@@ -45,7 +45,7 @@
 
         <action name="jspToPdf" method="createList" class="com.amashchenko.struts2.pdfstream.showcase.PdfStreamAction">
             <result type="pdfstream">
-                <param name="location">/WEB-INF/pages/table.jsp</param>
+                <param name="location">/WEB-INF/pages/example.jsp</param>
                 <param name="cssPaths">css/bootstrap.min.css, css/style.css</param>
                 <param name="contentDisposition">attachment;filename=jsppdf.pdf</param>
             </result>
@@ -53,7 +53,7 @@
         
         <action name="freemarkerToPdf" method="createList" class="com.amashchenko.struts2.pdfstream.showcase.PdfStreamAction">
             <result type="pdfstream">
-                <param name="location">/WEB-INF/ftl/table.ftl</param>
+                <param name="location">/WEB-INF/ftl/example.ftl</param>
                 <param name="renderer">freemarker</param>
                 <param name="cssPaths">css/bootstrap.min.css, css/style.css</param>
                 <param name="contentDisposition">attachment;filename=ftlpdf.pdf</param>

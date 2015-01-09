@@ -6,6 +6,6 @@
 
     <p>Struts2 PDF Stream plugin allows to transform a view into a PDF stream and return it as a result from Action.</p>
 
-    <s:url var="m1Url" action="table" namespace="/"/>
+    <s:url var="m1Url" action="example" namespace="/"/>
     <s:a href="%{m1Url}" cssClass="btn btn-primary btn-lg">example</s:a>
 </div>
