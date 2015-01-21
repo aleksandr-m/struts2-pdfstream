@@ -217,6 +217,10 @@ public class PdfStreamResult extends StrutsResultSupport {
             // add style for font family that supports unicode
             head.append("<style type='text/css'>body{font-family:DejaVu Sans;}</style>");
 
+            // remove script tags, they are not supported in pdf and can lead to
+            // not well formed document (<\/script>)
+            doc.select("script").remove();
+
             final String content = doc.html();
 
             if (LOG.isTraceEnabled()) {
