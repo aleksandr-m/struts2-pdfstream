@@ -122,6 +122,10 @@ public class PdfStreamResult extends StrutsResultSupport {
 
     private final static String FREEMARKER_RENDERER = "freemarker";
 
+    private final static String FONT_FILE_PATH = "/fonts/DejaVuSans.ttf";
+
+    private final static String FONT_STYLE_TAG = "<style type=\"text/css\">body{font-family:DejaVu Sans;}</style>";
+
     private String contentDisposition = "inline";
 
     private boolean allowCaching = true;
@@ -209,13 +213,13 @@ public class PdfStreamResult extends StrutsResultSupport {
                     if (css.startsWith("\\")) {
                         css = css.substring(1);
                     }
-                    head.append("<link rel='stylesheet' type='text/css' href='"
-                                    + css + "' />");
+                    head.append("<link rel=\"stylesheet\" type=\"text/css\" href=\""
+                                    + css + "\" />");
                 }
             }
 
             // add style for font family that supports unicode
-            head.append("<style type='text/css'>body{font-family:DejaVu Sans;}</style>");
+            head.append(FONT_STYLE_TAG);
 
             // remove script tags, they are not supported in pdf and can lead to
             // not well formed document (<\/script>)
@@ -275,8 +279,8 @@ public class PdfStreamResult extends StrutsResultSupport {
                     IOException, URISyntaxException {
         ITextRenderer renderer = new ITextRenderer();
         // for unicode
-        renderer.getFontResolver().addFont("/fonts/DejaVuSans.ttf",
-                        BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+        renderer.getFontResolver().addFont(FONT_FILE_PATH, BaseFont.IDENTITY_H,
+                        BaseFont.EMBEDDED);
 
         renderer.setDocumentFromString(content, baseUrl);
         renderer.layout();
