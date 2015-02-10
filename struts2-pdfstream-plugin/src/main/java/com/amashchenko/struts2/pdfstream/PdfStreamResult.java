@@ -163,7 +163,9 @@ public class PdfStreamResult extends StrutsResultSupport {
 
             if (renderer != null && TILES_RENDERER.equalsIgnoreCase(renderer)) {
                 if (tilesRenderer == null) {
-                    LOG.error("The tilesRenderer isn't injected. Have you added struts2-pdfstream-tiles or struts2-pdfstream-tiles3 dependecy?");
+                    if (LOG.isErrorEnabled()) {
+                        LOG.error("The tilesRenderer isn't injected. Have you added struts2-pdfstream-tiles or struts2-pdfstream-tiles3 dependency?");
+                    }
                     throw new AssertionError(
                                     "The tilesRenderer is null, cannot render tiles to pdf stream.");
                 }
@@ -203,8 +205,8 @@ public class PdfStreamResult extends StrutsResultSupport {
             }
 
             // parse response wrapper
-            final Document doc = parseContent(responseWrapper.toString());
-            final Element head = doc.head();
+            final Document document = parseContent(responseWrapper.toString());
+            final Element head = document.head();
 
             // add CSS from cssPathsSet parameter
             if (cssPathsSet != null && !cssPathsSet.isEmpty()) {
@@ -221,11 +223,7 @@ public class PdfStreamResult extends StrutsResultSupport {
             // add style for font family that supports unicode
             head.append(FONT_STYLE_TAG);
 
-            // remove script tags, they are not supported in pdf and can lead to
-            // not well formed document (<\/script>)
-            doc.select("script").remove();
-
-            final String content = doc.html();
+            final String content = document.html();
 
             if (LOG.isTraceEnabled()) {
                 LOG.trace("Content after parsing:\n" + content);
@@ -268,10 +266,15 @@ public class PdfStreamResult extends StrutsResultSupport {
     }
 
     Document parseContent(final String content) {
-        Document doc = Jsoup.parse(content);
-        doc.outputSettings().escapeMode(EscapeMode.xhtml);
-        doc.outputSettings().syntax(Document.OutputSettings.Syntax.xml);
-        return doc;
+        Document document = Jsoup.parse(content);
+        document.outputSettings().escapeMode(EscapeMode.xhtml);
+        document.outputSettings().syntax(Document.OutputSettings.Syntax.xml);
+
+        // remove script tags, they are not supported in pdf and can lead to
+        // not well formed document (e.g. <\/script> - escaped script tag)
+        document.select("script").remove();
+
+        return document;
     }
 
     private void createPdfStream(final String content, final String baseUrl,
