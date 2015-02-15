@@ -22,6 +22,6 @@
     
 <struts>
 
-    <bean type="com.amashchenko.struts2.pdfstream.TilesRenderer" class="com.amashchenko.struts2.pdfstream.tiles.TilesRendererImlp" />
+    <bean type="com.amashchenko.struts2.pdfstream.ViewRenderer" class="com.amashchenko.struts2.pdfstream.tiles.TilesRenderer" name="tiles" />
 
 </struts>

@@ -20,7 +20,7 @@
     <parent>
         <groupId>com.amashchenko.struts2.pdfstream</groupId>
         <artifactId>struts2-pdfstream-parent</artifactId>
-        <version>1.2.3-SNAPSHOT</version>
+        <version>1.2.3-renderers-SNAPSHOT</version>
     </parent>
     <artifactId>struts2-pdfstream-tiles</artifactId>
     <packaging>jar</packaging>
@@ -75,8 +75,20 @@
             <artifactId>servlet-api</artifactId>
         </dependency>
         <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
+        <dependency>
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>jsp-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-junit-plugin</artifactId>
         </dependency>
     </dependencies>
 </project>

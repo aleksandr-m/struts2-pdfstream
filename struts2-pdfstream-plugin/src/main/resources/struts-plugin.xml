@@ -22,6 +22,9 @@
     
 <struts>
 
+    <bean type="com.amashchenko.struts2.pdfstream.ViewRenderer" class="com.amashchenko.struts2.pdfstream.DefaultRenderer" />
+    <bean type="com.amashchenko.struts2.pdfstream.ViewRenderer" class="com.amashchenko.struts2.pdfstream.DefaultFreemarkerRenderer" name="freemarker" />
+
     <package name="pdfstream-default" extends="struts-default">
         <result-types> 
             <result-type name="pdfstream" class="com.amashchenko.struts2.pdfstream.PdfStreamResult" />
