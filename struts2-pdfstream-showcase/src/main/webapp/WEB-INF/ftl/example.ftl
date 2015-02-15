@@ -1,4 +1,4 @@
-<h3>Table from FreeMarker template</h3>
+<h3>FreeMarker template</h3>
 
 <table class="table table-bordered table-striped table-condensed">
 	<thead>

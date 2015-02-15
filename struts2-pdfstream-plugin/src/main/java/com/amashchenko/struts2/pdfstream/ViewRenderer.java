@@ -15,31 +15,17 @@
  */
 package com.amashchenko.struts2.pdfstream;
 
+import java.util.Locale;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * An interface for Tiles renderer.
- * 
- * @author Aleksandr Mashchenko
- * 
- */
-public interface TilesRenderer {
-    /**
-     * Renders Tiles definition.
-     * 
-     * @param definition
-     *            Tiles definition to render.
-     * @param request
-     *            Servlet request.
-     * @param response
-     *            Servlet response.
-     * @param servletContext
-     *            Servlet context.
-     * @throws Exception
-     */
-    void renderTiles(String definition, HttpServletRequest request,
-                    HttpServletResponse response, ServletContext servletContext)
-                    throws Exception;
+import com.opensymphony.xwork2.util.ValueStack;
+
+public interface ViewRenderer {
+    void render(String location, HttpServletRequest request,
+                    HttpServletResponse response,
+                    ServletContext servletContext, Locale locale,
+                    ValueStack valueStack, Object action) throws Exception;
 }

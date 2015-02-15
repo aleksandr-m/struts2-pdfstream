@@ -15,6 +15,8 @@
  */
 package com.amashchenko.struts2.pdfstream.tiles;
 
+import java.util.Locale;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,7 +27,8 @@ import org.apache.tiles.request.ApplicationContext;
 import org.apache.tiles.request.servlet.ServletRequest;
 import org.apache.tiles.request.servlet.ServletUtil;
 
-import com.amashchenko.struts2.pdfstream.TilesRenderer;
+import com.amashchenko.struts2.pdfstream.ViewRenderer;
+import com.opensymphony.xwork2.util.ValueStack;
 
 /**
  * Apache Tiles 3.x renderer.
@@ -33,17 +36,19 @@ import com.amashchenko.struts2.pdfstream.TilesRenderer;
  * @author Aleksandr Mashchenko
  * 
  */
-public class Tiles3RendererImlp implements TilesRenderer {
+public class Tiles3Renderer implements ViewRenderer {
 
     /** {@inheritDoc} */
     @Override
-    public void renderTiles(String definition, HttpServletRequest request,
-                    HttpServletResponse response, ServletContext servletContext) {
+    public void render(final String location, final HttpServletRequest request,
+                    final HttpServletResponse response,
+                    final ServletContext servletContext, final Locale locale,
+                    final ValueStack valueStack, final Object action) {
         ApplicationContext applicationContext = ServletUtil
                         .getApplicationContext(servletContext);
         TilesContainer container = TilesAccess.getContainer(applicationContext);
         ServletRequest servletRequest = new ServletRequest(applicationContext,
                         request, response);
-        container.render(definition, servletRequest);
+        container.render(location, servletRequest);
     }
 }
