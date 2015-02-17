@@ -16,36 +16,26 @@
 package com.amashchenko.struts2.pdfstream;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.StringWriter;
 
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpServletResponseWrapper;
 
 /**
- * Simple servlet response wrapper.
+ * Simple ServletOutputStream implementation.
  * 
  * @author Aleksandr Mashchenko
  * 
  */
-public class SimpleServletResponseWrapper extends HttpServletResponseWrapper {
+public class SimpleServletOutputStream extends ServletOutputStream {
 
-    private StringWriter stringWriter = new StringWriter();
+    private final StringWriter stringWriter;
 
-    public SimpleServletResponseWrapper(HttpServletResponse response) {
-        super(response);
+    public SimpleServletOutputStream(final StringWriter sw) {
+        this.stringWriter = sw;
     }
 
-    public PrintWriter getWriter() throws IOException {
-        return new PrintWriter(stringWriter);
-    }
-
-    public ServletOutputStream getOutputStream() throws IOException {
-        return new SimpleServletOutputStream(stringWriter);
-    }
-
-    public String toString() {
-        return stringWriter.toString();
+    @Override
+    public void write(int b) throws IOException {
+        stringWriter.write(b);
     }
 }
