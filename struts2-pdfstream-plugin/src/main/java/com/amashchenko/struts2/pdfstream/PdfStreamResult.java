@@ -45,7 +45,7 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * <!-- START SNIPPET: description -->
  * 
  * This result transforms a view into a PDF stream. Default supported views are:
- * a JSP, a FreeMarker template, an Apache Tiles definition.
+ * HTML, JSP, FreeMarker template, Apache Tiles definition.
  * 
  * <!-- END SNIPPET: description -->
  * <p/>

@@ -4,18 +4,19 @@ The PDF Stream plugin allows to transform a view into a PDF stream and return it
 
 Default supported views:
 
-- JSP-s
-- FreeMarker templates
-- Apache Tiles 2.x definitions
-- Apache Tiles 3.x definitions
+- HTML
+- JSP
+- FreeMarker template
+- Apache Tiles 2.x definition
+- Apache Tiles 3.x definition
 
 
 ## Features Overview
 
-- Direct transformation of JSP-s, FreeMarker templates and Apache Tiles definitions to PDF via Struts2 result
+- Direct transformation of HTML, JSP, FreeMarker template and Apache Tiles definition to PDF via Struts2 result
 - PDF content styling using CSS
 - Support of wide range of characters in PDF thanks to the [DejaVu fonts](http://dejavu-fonts.org/)
-- Can process even malformed HTML thanks to the [jsoup](http://jsoup.org/)
+- Handling of the malformed HTML thanks to the [jsoup](http://jsoup.org/)
 
 
 ## Showcase
