@@ -24,8 +24,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.opensymphony.xwork2.util.ValueStack;
 
+/**
+ * Default implementation of the {@link ViewRenderer} which uses
+ * {@link RequestDispatcher}.
+ * 
+ * @author Aleksandr Mashchenko
+ * 
+ */
 public class DefaultRenderer implements ViewRenderer {
 
+    /** {@inheritDoc} */
     @Override
     public void render(final String location, final HttpServletRequest request,
                     final HttpServletResponse response,

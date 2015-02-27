@@ -32,11 +32,18 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateModel;
 
-public class DefaultFreemarkerRenderer implements ViewRenderer {
+/**
+ * FreeMarker renderer.
+ * 
+ * @author Aleksandr Mashchenko
+ * 
+ */
+public class FreemarkerRenderer implements ViewRenderer {
 
     @Inject
     private FreemarkerManager freemarkerManager;
 
+    /** {@inheritDoc} */
     @Override
     public void render(final String location, final HttpServletRequest request,
                     final HttpServletResponse response,

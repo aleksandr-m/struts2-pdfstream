@@ -43,18 +43,18 @@ public class PluginTest extends StrutsJUnit4TestCase<PdfStreamResult> {
     }
 
     /**
-     * Tests default FreeMarker renderer bean.
+     * Tests FreeMarker renderer bean.
      * 
      * @throws Exception
      */
     @Test
-    public void testDefaultFreemarkerRendererBean() throws Exception {
+    public void testFreemarkerRendererBean() throws Exception {
         Assert.assertNotNull(container);
 
         ViewRenderer viewRenderer = container.getInstance(ViewRenderer.class,
                         "freemarker");
 
         Assert.assertNotNull(viewRenderer);
-        Assert.assertTrue(viewRenderer instanceof DefaultFreemarkerRenderer);
+        Assert.assertTrue(viewRenderer instanceof FreemarkerRenderer);
     }
 }

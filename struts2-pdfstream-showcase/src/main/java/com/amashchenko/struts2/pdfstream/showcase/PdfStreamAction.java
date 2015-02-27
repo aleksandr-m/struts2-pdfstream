@@ -21,7 +21,7 @@ import java.util.List;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
- * Simple action to demonstrate use of PDF Stream plugin.
+ * Simple action to demonstrate usage of PDF Stream plugin.
  * 
  * @author Aleksandr Mashchenko
  * 

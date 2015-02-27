@@ -23,7 +23,31 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.opensymphony.xwork2.util.ValueStack;
 
+/**
+ * A view renderer should implement this interface.
+ * 
+ * @author Aleksandr Mashchenko
+ * 
+ */
 public interface ViewRenderer {
+    /**
+     * 
+     * @param location
+     *            Path to the resource to render.
+     * @param request
+     *            Servlet request.
+     * @param response
+     *            Servlet response.
+     * @param servletContext
+     *            Reference to the ServletContext.
+     * @param locale
+     *            Locale to use.
+     * @param valueStack
+     *            Reference to the ValueStack.
+     * @param action
+     *            Reference to the current Action.
+     * @throws Exception
+     */
     void render(String location, HttpServletRequest request,
                     HttpServletResponse response,
                     ServletContext servletContext, Locale locale,
