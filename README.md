@@ -109,3 +109,24 @@ For the Apache Tiles 3.x support add the `struts2-pdfstream-tiles3`.
             <param name="contentDisposition">attachment;filename=ftlpdf.pdf</param>
         </result>
     </action>
+
+
+
+## Extending the plugin
+### Adding support for other views
+
+This plugin can be easily extended in order to add support for transforming other views (e.g. Velocity) into PDF.
+
+1. Implement `com.amashchenko.struts2.pdfstream.ViewRenderer` interface.
+2. Create bean definition in struts.xml or in struts-plugin.xml with `type="com.amashchenko.struts2.pdfstream.ViewRenderer"` and custom name.
+
+    <bean type="com.amashchenko.struts2.pdfstream.ViewRenderer" class="some.package.CustomRenderer" name="customrenderer" />
+
+3. Use `pdfstream` result with the `renderer` parameter set to the name of the bean you have defined.
+
+    <action name="customToPdf">
+        <result type="pdfstream">
+            <param name="location">example</param>
+            <param name="renderer">customrenderer</param>
+        </result>
+    </action>
