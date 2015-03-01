@@ -34,9 +34,9 @@ public class SimpleServletResponseWrapperTest {
 
         Assert.assertNotNull(responseWrapper);
 
-        final String expected = "Testing wrapper.";
+        final String expected = "Testing wrapper. А а Б б В в Г г Д д. &#x1F030;&#x1F031;&#x1F032;";
 
-        // write
+        // write to writer
         responseWrapper.getWriter().write(expected);
 
         final String actual = responseWrapper.toString();
@@ -52,9 +52,9 @@ public class SimpleServletResponseWrapperTest {
 
         Assert.assertNotNull(responseWrapper);
 
-        final String expected = "Testing wrapper.";
+        final String expected = "Testing wrapper. А а Б б В в Г г Д д. &#x1F030;&#x1F031;&#x1F032;";
 
-        // write
+        // write to output stream
         responseWrapper.getOutputStream().write(expected.getBytes());
 
         final String actual = responseWrapper.toString();

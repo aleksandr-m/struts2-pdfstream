@@ -16,7 +16,7 @@
 package com.amashchenko.struts2.pdfstream;
 
 import java.io.IOException;
-import java.io.StringWriter;
+import java.io.OutputStream;
 
 import javax.servlet.ServletOutputStream;
 
@@ -28,14 +28,14 @@ import javax.servlet.ServletOutputStream;
  */
 public class SimpleServletOutputStream extends ServletOutputStream {
 
-    private final StringWriter stringWriter;
+    private final OutputStream outputStream;
 
-    public SimpleServletOutputStream(final StringWriter sw) {
-        this.stringWriter = sw;
+    public SimpleServletOutputStream(final OutputStream stream) {
+        this.outputStream = stream;
     }
 
     @Override
     public void write(int b) throws IOException {
-        stringWriter.write(b);
+        outputStream.write(b);
     }
 }
