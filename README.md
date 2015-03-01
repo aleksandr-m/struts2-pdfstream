@@ -83,9 +83,19 @@ For the Apache Tiles 3.x support add the `struts2-pdfstream-tiles3`.
 
     <action name="jspToPdf">
         <result type="pdfstream">
-            <param name="location">/WEB-INF/pages/table.jsp</param>
+            <param name="location">/WEB-INF/pages/example.jsp</param>
             <param name="cssPaths">css/bootstrap.min.css, css/style.css</param>
             <param name="contentDisposition">attachment;filename=jsppdf.pdf</param>
+        </result>
+    </action>
+    
+### HTML to PDF stream
+
+    <action name="htmlToPdf">
+        <result type="pdfstream">
+            <param name="location">/WEB-INF/pages/example.html</param>
+            <param name="cssPaths">css/bootstrap.min.css, css/style.css</param>
+            <param name="contentDisposition">attachment;filename=htmlpdf.pdf</param>
         </result>
     </action>
 
@@ -93,7 +103,7 @@ For the Apache Tiles 3.x support add the `struts2-pdfstream-tiles3`.
 
     <action name="tilesToPdf">
         <result type="pdfstream">
-            <param name="location">table</param>
+            <param name="location">example</param>
             <param name="renderer">tiles</param>
             <param name="contentDisposition">attachment;filename=tilespdf.pdf</param>
         </result>
@@ -103,7 +113,7 @@ For the Apache Tiles 3.x support add the `struts2-pdfstream-tiles3`.
 
     <action name="freemarkerToPdf">
         <result type="pdfstream">
-            <param name="location">/WEB-INF/ftl/table.ftl</param>
+            <param name="location">/WEB-INF/ftl/example.ftl</param>
             <param name="renderer">freemarker</param>
             <param name="cssPaths">css/bootstrap.min.css, css/style.css</param>
             <param name="contentDisposition">attachment;filename=ftlpdf.pdf</param>
