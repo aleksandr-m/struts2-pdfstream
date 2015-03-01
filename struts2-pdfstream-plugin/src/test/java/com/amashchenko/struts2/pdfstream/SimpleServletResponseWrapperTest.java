@@ -26,6 +26,11 @@ import org.springframework.mock.web.MockHttpServletResponse;
  * 
  */
 public class SimpleServletResponseWrapperTest {
+    /**
+     * Tests writing to writer.
+     * 
+     * @throws Exception
+     */
     @Test
     public void testWritingToWriter() throws Exception {
         MockHttpServletResponse response = new MockHttpServletResponse();
@@ -44,6 +49,11 @@ public class SimpleServletResponseWrapperTest {
         Assert.assertEquals(expected, actual);
     }
 
+    /**
+     * Tests writing to output stream.
+     * 
+     * @throws Exception
+     */
     @Test
     public void testWritingToOutputStream() throws Exception {
         MockHttpServletResponse response = new MockHttpServletResponse();
