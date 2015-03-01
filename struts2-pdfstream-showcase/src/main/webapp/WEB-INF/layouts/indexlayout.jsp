@@ -14,7 +14,7 @@
 
     <body>
         <a href="https://github.com/aleksandr-m/struts2-pdfstream" target="_blank">
-        	<img style="position: absolute; top: 0; right: 0; border: 0; z-index: 10;" src="<s:url value='/images/forkme_right_red_aa0000.png'/>" alt="Fork me on GitHub">
+            <img style="position: absolute; top: 0; right: 0; border: 0; z-index: 10;" src="<s:url value='/images/forkme_right_red_aa0000.png'/>" alt="Fork me on GitHub"/>
         </a>
         <div class="container-fluid">
             <div class="row">

@@ -43,6 +43,14 @@
             </result>
         </action>
 
+        <action name="htmlToPdf" class="com.amashchenko.struts2.pdfstream.showcase.PdfStreamAction">
+            <result type="pdfstream">
+                <param name="location">/WEB-INF/pages/example.html</param>
+                <param name="cssPaths">css/bootstrap.min.css, css/style.css</param>
+                <param name="contentDisposition">attachment;filename=htmlpdf.pdf</param>
+            </result>
+        </action>
+
         <action name="jspToPdf" method="createList" class="com.amashchenko.struts2.pdfstream.showcase.PdfStreamAction">
             <result type="pdfstream">
                 <param name="location">/WEB-INF/pages/example.jsp</param>
@@ -50,7 +58,7 @@
                 <param name="contentDisposition">attachment;filename=jsppdf.pdf</param>
             </result>
         </action>
-        
+
         <action name="freemarkerToPdf" method="createList" class="com.amashchenko.struts2.pdfstream.showcase.PdfStreamAction">
             <result type="pdfstream">
                 <param name="location">/WEB-INF/ftl/example.ftl</param>

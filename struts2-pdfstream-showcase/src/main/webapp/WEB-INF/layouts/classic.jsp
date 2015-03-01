@@ -13,12 +13,12 @@
     </head>
     <body>
         <a href="https://github.com/aleksandr-m/struts2-pdfstream" target="_blank">
-        	<img style="position: absolute; top: 0; right: 0; border: 0; z-index: 10;" src="<s:url value='/images/forkme_right_red_aa0000.png'/>" alt="Fork me on GitHub">
+            <img style="position: absolute; top: 0; right: 0; border: 0; z-index: 10;" src="<s:url value='/images/forkme_right_red_aa0000.png'/>" alt="Fork me on GitHub"/>
         </a>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 tiles">
-                		<h2>Tiles definition</h2>
+                    <h2>Tiles definition</h2>
                     <tiles:insertAttribute name="body" />
 
                     <div class="top-space">
@@ -28,9 +28,15 @@
             </div>
 
             <div class="row top-space">
-            	<div class="col-md-12">
-            		<s:a action="freemarkerToPdf" cssClass="btn btn-primary btn-md">freemarker to pdf stream</s:a>
-            	</div>
+                <div class="col-md-12">
+                    <s:a action="freemarkerToPdf" cssClass="btn btn-primary btn-md">freemarker to pdf stream</s:a>
+                </div>
+            </div>
+            
+            <div class="row top-space">
+                <div class="col-md-12">
+                    <s:a action="htmlToPdf" cssClass="btn btn-primary btn-md">html to pdf stream</s:a>
+                </div>
             </div>
 
             <div class="row top-space">
@@ -62,6 +68,15 @@
         &lt;param name="renderer"&gt;freemarker&lt;/param&gt;
         &lt;param name="cssPaths"&gt;css/bootstrap.min.css, css/style.css&lt;/param&gt;
         &lt;param name="contentDisposition"&gt;attachment;filename=ftlpdf.pdf&lt;/param&gt;
+    &lt;/result&gt;
+&lt;/action&gt;
+                        </span>
+                        <span id="conf-html">    
+&lt;action&gt;
+    &lt;result type="pdfstream"&gt;
+        &lt;param name="location"&gt;/WEB-INF/pages/example.html&lt;/param&gt;
+        &lt;param name="cssPaths"&gt;css/bootstrap.min.css, css/style.css&lt;/param&gt;
+        &lt;param name="contentDisposition"&gt;attachment;filename=htmlpdf.pdf&lt;/param&gt;
     &lt;/result&gt;
 &lt;/action&gt;
                         </span>
