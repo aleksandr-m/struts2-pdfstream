@@ -7,7 +7,7 @@
         <put-attribute name="body" value="/WEB-INF/pages/homepage.jsp" />
     </definition>
     
-    <definition name="table" template="/WEB-INF/layouts/classic.jsp">
-        <put-attribute name="body" value="/WEB-INF/pages/table.jsp" />
+    <definition name="example" template="/WEB-INF/layouts/classic.jsp">
+        <put-attribute name="body" value="/WEB-INF/pages/example.jsp" />
     </definition>
 </tiles-definitions>

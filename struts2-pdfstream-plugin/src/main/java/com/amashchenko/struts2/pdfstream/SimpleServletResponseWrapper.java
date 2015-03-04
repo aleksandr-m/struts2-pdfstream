@@ -15,9 +15,9 @@
  */
 package com.amashchenko.struts2.pdfstream;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.StringWriter;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
@@ -31,21 +31,29 @@ import javax.servlet.http.HttpServletResponseWrapper;
  */
 public class SimpleServletResponseWrapper extends HttpServletResponseWrapper {
 
-    private StringWriter sw = new StringWriter();
+    private final ByteArrayOutputStream stream;
+    private final PrintWriter printWriter;
+    private final SimpleServletOutputStream simpleServletOutputStream;
 
     public SimpleServletResponseWrapper(HttpServletResponse response) {
         super(response);
+        this.stream = new ByteArrayOutputStream();
+        this.printWriter = new PrintWriter(this.stream);
+        this.simpleServletOutputStream = new SimpleServletOutputStream(
+                        this.stream);
     }
 
     public PrintWriter getWriter() throws IOException {
-        return new PrintWriter(sw);
+        return printWriter;
     }
 
     public ServletOutputStream getOutputStream() throws IOException {
-        throw new UnsupportedOperationException();
+        return simpleServletOutputStream;
     }
 
     public String toString() {
-        return sw.toString();
+        // flush printWriter before calling toString() on underlying stream
+        printWriter.flush();
+        return stream.toString();
     }
 }

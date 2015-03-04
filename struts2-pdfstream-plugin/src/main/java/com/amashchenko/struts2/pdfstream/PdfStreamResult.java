@@ -19,17 +19,13 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URISyntaxException;
 import java.util.LinkedHashSet;
-import java.util.Locale;
 import java.util.Set;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.dispatcher.StrutsResultSupport;
-import org.apache.struts2.views.freemarker.FreemarkerManager;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -40,20 +36,16 @@ import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.BaseFont;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
+import com.opensymphony.xwork2.inject.Container;
 import com.opensymphony.xwork2.inject.Inject;
 import com.opensymphony.xwork2.util.logging.Logger;
 import com.opensymphony.xwork2.util.logging.LoggerFactory;
 
-import freemarker.template.Configuration;
-import freemarker.template.Template;
-import freemarker.template.TemplateException;
-import freemarker.template.TemplateModel;
-
 /**
  * <!-- START SNIPPET: description -->
  * 
- * This result transforms a view into a PDF stream. A view could be one of the
- * following: a JSP, an Apache Tiles definition or a FreeMarker template.
+ * This result transforms a view into a PDF stream. Default supported views are:
+ * HTML, JSP, FreeMarker template, Apache Tiles definition.
  * 
  * <!-- END SNIPPET: description -->
  * <p/>
@@ -71,9 +63,9 @@ import freemarker.template.TemplateModel;
  * and 'Cache-Control' to 'no-cahce', and prevent client from caching the
  * content. (default = <code>true</code>)
  * 
- * <li><b>renderer</b> - which renderer will be used to produce pdf stream.
- * Supported values are: <code>jsp</code>, <code>tiles</code> and
- * <code>freemarker</code>. Default is <code>jsp</code>.</li>
+ * <li><b>renderer</b> - name of the {@link ViewRenderer} bean which will be
+ * used to produce pdf stream. If not defined the {@link DefaultRenderer} will
+ * be used.</li>
  * 
  * <li><b>cssPaths</b> - comma separated values of CSS files paths.</li>
  * 
@@ -118,9 +110,9 @@ public class PdfStreamResult extends StrutsResultSupport {
 
     private final static String PDF_MIME_TYPE = "application/pdf";
 
-    private final static String TILES_RENDERER = "tiles";
+    private final static String FONT_FILE_PATH = "/fonts/DejaVuSans.ttf";
 
-    private final static String FREEMARKER_RENDERER = "freemarker";
+    private final static String FONT_STYLE_TAG = "<style type=\"text/css\">body{font-family:DejaVu Sans;}</style>";
 
     private String contentDisposition = "inline";
 
@@ -131,10 +123,7 @@ public class PdfStreamResult extends StrutsResultSupport {
     private Set<String> cssPathsSet;
 
     @Inject
-    private FreemarkerManager freemarkerManager;
-
-    @Inject(required = false)
-    private TilesRenderer tilesRenderer;
+    private Container container;
 
     @Override
     protected void doExecute(String finalLocation, ActionInvocation invocation)
@@ -157,25 +146,25 @@ public class PdfStreamResult extends StrutsResultSupport {
             final ServletContext servletContext = (ServletContext) actionContext
                             .get(SERVLET_CONTEXT);
 
-            if (renderer != null && TILES_RENDERER.equalsIgnoreCase(renderer)) {
-                if (tilesRenderer == null) {
-                    LOG.error("The tilesRenderer isn't injected. Have you added struts2-pdfstream-tiles or struts2-pdfstream-tiles3 dependecy?");
-                    throw new AssertionError(
-                                    "The tilesRenderer is null, cannot render tiles to pdf stream.");
-                }
-                // render tiles
-                tilesRenderer.renderTiles(finalLocation, request,
-                                responseWrapper, servletContext);
-            } else if (renderer != null
-                            && FREEMARKER_RENDERER.equalsIgnoreCase(renderer)) {
-                // render freemarker
-                renderFreemarker(finalLocation, request, responseWrapper,
-                                servletContext, invocation,
-                                actionContext.getLocale());
+            ViewRenderer viewRenderer;
+            if (renderer == null) {
+                viewRenderer = container.getInstance(ViewRenderer.class);
             } else {
-                // render jsp
-                renderJsp(finalLocation, request, responseWrapper);
+                viewRenderer = container.getInstance(ViewRenderer.class,
+                                renderer);
             }
+
+            if (viewRenderer == null) {
+                final String err = "Cannot get an instance of ViewRenderer with the name '"
+                                + renderer + "'.";
+                LOG.error(err);
+                throw new AssertionError(err);
+            }
+
+            // render view
+            viewRenderer.render(finalLocation, request, responseWrapper,
+                            servletContext, actionContext.getLocale(),
+                            invocation.getStack(), invocation.getAction());
 
             // Set the content type
             response.setContentType(PDF_MIME_TYPE);
@@ -199,8 +188,8 @@ public class PdfStreamResult extends StrutsResultSupport {
             }
 
             // parse response wrapper
-            final Document doc = parseContent(responseWrapper.toString());
-            final Element head = doc.head();
+            final Document document = parseContent(responseWrapper.toString());
+            final Element head = document.head();
 
             // add CSS from cssPathsSet parameter
             if (cssPathsSet != null && !cssPathsSet.isEmpty()) {
@@ -209,15 +198,15 @@ public class PdfStreamResult extends StrutsResultSupport {
                     if (css.startsWith("\\")) {
                         css = css.substring(1);
                     }
-                    head.append("<link rel='stylesheet' type='text/css' href='"
-                                    + css + "' />");
+                    head.append("<link rel=\"stylesheet\" type=\"text/css\" href=\""
+                                    + css + "\" />");
                 }
             }
 
             // add style for font family that supports unicode
-            head.append("<style type='text/css'>body{font-family:DejaVu Sans;}</style>");
+            head.append(FONT_STYLE_TAG);
 
-            final String content = doc.html();
+            final String content = document.html();
 
             if (LOG.isTraceEnabled()) {
                 LOG.trace("Content after parsing:\n" + content);
@@ -233,37 +222,16 @@ public class PdfStreamResult extends StrutsResultSupport {
         }
     }
 
-    private void renderJsp(final String location,
-                    final HttpServletRequest request,
-                    final HttpServletResponse response)
-                    throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher(location);
-        dispatcher.include(request, response);
-    }
-
-    private void renderFreemarker(final String location,
-                    final HttpServletRequest request,
-                    final HttpServletResponse response,
-                    final ServletContext servletContext,
-                    final ActionInvocation invocation, final Locale locale)
-                    throws TemplateException, IOException {
-        Configuration configuration = freemarkerManager
-                        .getConfiguration(servletContext);
-        Template template = configuration.getTemplate(location, locale);
-
-        TemplateModel model = freemarkerManager.buildTemplateModel(
-                        invocation.getStack(), invocation.getAction(),
-                        servletContext, request, response,
-                        configuration.getObjectWrapper());
-
-        template.process(model, response.getWriter());
-    }
-
     Document parseContent(final String content) {
-        Document doc = Jsoup.parse(content);
-        doc.outputSettings().escapeMode(EscapeMode.xhtml);
-        doc.outputSettings().syntax(Document.OutputSettings.Syntax.xml);
-        return doc;
+        Document document = Jsoup.parse(content);
+        document.outputSettings().escapeMode(EscapeMode.xhtml);
+        document.outputSettings().syntax(Document.OutputSettings.Syntax.xml);
+
+        // remove script tags, they are not supported in pdf and can lead to
+        // not well formed document (e.g. <\/script> - escaped script tag)
+        document.select("script").remove();
+
+        return document;
     }
 
     private void createPdfStream(final String content, final String baseUrl,
@@ -271,8 +239,8 @@ public class PdfStreamResult extends StrutsResultSupport {
                     IOException, URISyntaxException {
         ITextRenderer renderer = new ITextRenderer();
         // for unicode
-        renderer.getFontResolver().addFont("/fonts/DejaVuSans.ttf",
-                        BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+        renderer.getFontResolver().addFont(FONT_FILE_PATH, BaseFont.IDENTITY_H,
+                        BaseFont.EMBEDDED);
 
         renderer.setDocumentFromString(content, baseUrl);
         renderer.layout();

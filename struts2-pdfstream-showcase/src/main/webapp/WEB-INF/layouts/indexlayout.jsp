@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8"/>
         <title>Struts2 PDF Stream Showcase</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -12,7 +13,9 @@
     </head>
 
     <body>
-        <a href="https://github.com/aleksandr-m/struts2-pdfstream" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0; z-index: 10;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+        <a href="https://github.com/aleksandr-m/struts2-pdfstream" target="_blank">
+            <img style="position: absolute; top: 0; right: 0; border: 0; z-index: 10;" src="<s:url value='/images/forkme_right_red_aa0000.png'/>" alt="Fork me on GitHub"/>
+        </a>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">

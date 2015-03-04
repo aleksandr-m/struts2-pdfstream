@@ -21,7 +21,7 @@
     <artifactId>struts2-pdfstream-parent</artifactId>
     <packaging>pom</packaging>
     <name>struts2-pdfstream-parent</name>
-    <version>1.2.2</version>
+    <version>1.3.0</version>
  
     <description>Parent POM for struts2-pdfstream.</description>
  
@@ -94,7 +94,7 @@
                 <plugin>
                     <groupId>com.amashchenko.maven.plugin</groupId>
                     <artifactId>gitflow-maven-plugin</artifactId>
-                    <version>1.0.6</version>
+                    <version>1.0.8</version>
                     <configuration>
                        <installProject>true</installProject>
                        <gitFlowConfig>

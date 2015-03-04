@@ -13,32 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.amashchenko.struts2.pdfstream.tiles;
+package com.amashchenko.struts2.pdfstream;
 
+import java.util.Locale;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.tiles.TilesContainer;
-import org.apache.tiles.TilesException;
-import org.apache.tiles.access.TilesAccess;
-
-import com.amashchenko.struts2.pdfstream.TilesRenderer;
+import com.opensymphony.xwork2.util.ValueStack;
 
 /**
- * Apache Tiles 2.x renderer.
+ * Default implementation of the {@link ViewRenderer} which uses
+ * {@link RequestDispatcher}.
  * 
  * @author Aleksandr Mashchenko
  * 
  */
-public class TilesRendererImlp implements TilesRenderer {
+public class DefaultRenderer implements ViewRenderer {
 
     /** {@inheritDoc} */
     @Override
-    public void renderTiles(String definition, HttpServletRequest request,
-                    HttpServletResponse response, ServletContext servletContext)
-                    throws TilesException {
-        TilesContainer container = TilesAccess.getContainer(servletContext);
-        container.render(definition, request, response);
+    public void render(final String location, final HttpServletRequest request,
+                    final HttpServletResponse response,
+                    final ServletContext servletContext, final Locale locale,
+                    final ValueStack valueStack, final Object action)
+                    throws Exception {
+        RequestDispatcher dispatcher = request.getRequestDispatcher(location);
+        dispatcher.include(request, response);
     }
 }

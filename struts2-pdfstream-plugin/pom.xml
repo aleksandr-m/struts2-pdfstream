@@ -20,13 +20,13 @@
     <parent>
         <groupId>com.amashchenko.struts2.pdfstream</groupId>
         <artifactId>struts2-pdfstream-parent</artifactId>
-        <version>1.2.2</version>
+        <version>1.3.0</version>
     </parent>
     <artifactId>struts2-pdfstream-plugin</artifactId>
     <packaging>jar</packaging>
     <name>struts2-pdfstream-plugin</name>
 
-    <description>Struts2 PDF Stream Plug-in. A Struts2 plug-in for creating PDF streams from views.</description>
+    <description>Struts2 PDF Stream Plugin. This plugin allows to transform a view into a PDF stream and return it as a result from Action.</description>
  
     <inceptionYear>2014</inceptionYear>
 
@@ -82,6 +82,10 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-junit-plugin</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>

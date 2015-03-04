@@ -21,7 +21,7 @@ import java.util.List;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
- * Simple action to demonstrate use of PDF stream plugin.
+ * Simple action to demonstrate usage of PDF Stream plugin.
  * 
  * @author Aleksandr Mashchenko
  * 
@@ -33,7 +33,7 @@ public class PdfStreamAction extends ActionSupport {
 
     public String createList() {
         list = new ArrayList<Integer>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             list.add(i);
         }
         return SUCCESS;

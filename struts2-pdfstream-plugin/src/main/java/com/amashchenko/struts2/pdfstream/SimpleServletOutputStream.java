@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!-- 
 /*
  * Copyright 2014-2015 Aleksandr Mashchenko.
  *
@@ -15,13 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
--->
-<!DOCTYPE struts PUBLIC
-    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
-    "http://struts.apache.org/dtds/struts-2.3.dtd">
-    
-<struts>
+package com.amashchenko.struts2.pdfstream;
 
-    <bean type="com.amashchenko.struts2.pdfstream.ViewRenderer" class="com.amashchenko.struts2.pdfstream.tiles.Tiles3Renderer" name="tiles" />
+import java.io.IOException;
+import java.io.OutputStream;
 
-</struts>
+import javax.servlet.ServletOutputStream;
+
+/**
+ * Simple ServletOutputStream implementation.
+ * 
+ * @author Aleksandr Mashchenko
+ * 
+ */
+public class SimpleServletOutputStream extends ServletOutputStream {
+
+    private final OutputStream outputStream;
+
+    public SimpleServletOutputStream(final OutputStream stream) {
+        this.outputStream = stream;
+    }
+
+    @Override
+    public void write(int b) throws IOException {
+        outputStream.write(b);
+    }
+}

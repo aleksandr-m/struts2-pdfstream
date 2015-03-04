@@ -20,13 +20,13 @@
     <parent>
         <groupId>com.amashchenko.struts2.pdfstream</groupId>
         <artifactId>struts2-pdfstream-parent</artifactId>
-        <version>1.2.2</version>
+        <version>1.3.0</version>
     </parent>
     <artifactId>struts2-pdfstream-tiles3</artifactId>
     <packaging>jar</packaging>
     <name>struts2-pdfstream-tiles3</name>
     
-    <description>Adds ability to use Apache Tiles version 3.x as a view in Struts2 PDF Stream Plug-in.</description>
+    <description>Adds the ability to use Apache Tiles version 3.x definitions as a view in Struts2 PDF Stream Plugin.</description>
  
     <inceptionYear>2014</inceptionYear>
 
@@ -82,8 +82,20 @@
             <artifactId>servlet-api</artifactId>
         </dependency>
         <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
+        <dependency>
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>jsp-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-junit-plugin</artifactId>
         </dependency>
     </dependencies>
 </project>
