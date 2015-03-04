@@ -23,7 +23,7 @@ Default supported views:
 
 Showcase application can be downloaded from the Maven Central Repository.
 
-[Download struts2-pdfstream-showcase](http://search.maven.org/remotecontent?filepath=com/amashchenko/struts2/pdfstream/struts2-pdfstream-showcase/1.2.2/struts2-pdfstream-showcase-1.2.2.war)
+[Download struts2-pdfstream-showcase](http://search.maven.org/remotecontent?filepath=com/amashchenko/struts2/pdfstream/struts2-pdfstream-showcase/1.3.0/struts2-pdfstream-showcase-1.3.0.war)
 
 
 ## Contributing
@@ -46,7 +46,7 @@ If you are using Maven, add this to your project POM:
         <dependency>
             <groupId>com.amashchenko.struts2.pdfstream</groupId>
             <artifactId>struts2-pdfstream-plugin</artifactId>
-            <version>1.2.2</version>
+            <version>1.3.0</version>
         </dependency>
         ...
     </dependencies>
@@ -58,7 +58,7 @@ For the Apache Tiles 2.x support add the `struts2-pdfstream-tiles`.
     <dependency>
         <groupId>com.amashchenko.struts2.pdfstream</groupId>
         <artifactId>struts2-pdfstream-tiles</artifactId>
-        <version>1.2.2</version>
+        <version>1.3.0</version>
     </dependency>
         
 For the Apache Tiles 3.x support add the `struts2-pdfstream-tiles3`.
@@ -66,7 +66,7 @@ For the Apache Tiles 3.x support add the `struts2-pdfstream-tiles3`.
     <dependency>
         <groupId>com.amashchenko.struts2.pdfstream</groupId>
         <artifactId>struts2-pdfstream-tiles3</artifactId>
-        <version>1.2.2</version>
+        <version>1.3.0</version>
     </dependency>
 
 
