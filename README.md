@@ -37,7 +37,14 @@ If you have questions about how to use `struts2-pdfstream-plugin` [create a new 
 
 ## Installation
 
-Copy struts2-pdfstream-plugin-x.x.x.jar into your classpath (WEB-INF/lib). No other files need to be copied or created.
+Copy following jars into your classpath (WEB-INF/lib):
+
+- struts2-pdfstream-plugin-1.3.0.jar
+- flying-saucer-core-9.0.7.jar
+- flying-saucer-pdf-9.0.7.jar
+- itext-2.1.7.jar
+- jsoup-1.8.1.jar
+
 
 If you are using Maven, add this to your project POM:
 
