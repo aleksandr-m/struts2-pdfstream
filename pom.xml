@@ -22,9 +22,9 @@
     <packaging>pom</packaging>
     <name>struts2-pdfstream-parent</name>
     <version>1.3.1-SNAPSHOT</version>
- 
+
     <description>Parent POM for struts2-pdfstream.</description>
- 
+
     <inceptionYear>2014</inceptionYear>
 
     <licenses>
@@ -34,21 +34,21 @@
             <distribution>repo</distribution>
         </license>
     </licenses> 
- 
+
     <developers>
         <developer>
             <name>Aleksandr Mashchenko</name>
         </developer>
     </developers>
- 
+
     <url>${url}</url>
- 
+
     <scm>
         <url>${url}</url>
         <connection>${scm.url}</connection>
         <developerConnection>${scm.url}</developerConnection>
     </scm>
- 
+
     <distributionManagement>
         <repository>
             <id>sonatype-nexus-staging</id>
@@ -66,18 +66,19 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.6</java.version>
         <struts2.version>2.3.20</struts2.version>
+        <openhtmltopdf.version>0.0.1-RC3</openhtmltopdf.version>
         <scm.url>scm:git:git@github.com:aleksandr-m/struts2-pdfstream.git</scm.url>
         <url>https://github.com/aleksandr-m/struts2-pdfstream</url>
     </properties>
- 
+
     <modules>
         <module>struts2-pdfstream-plugin</module>
         <module>struts2-pdfstream-tiles</module>
         <module>struts2-pdfstream-tiles3</module>
         <module>struts2-pdfstream-showcase</module>
     </modules>
- 
- 
+
+
     <build>
         <pluginManagement>
             <plugins>
@@ -105,7 +106,7 @@
             </plugins>
         </pluginManagement>
     </build>
-    
+
     <profiles>
         <profile>
             <id>release</id>
@@ -155,7 +156,7 @@
             </build>
         </profile>
     </profiles>
-  
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -186,13 +187,18 @@
                 <type>jar</type>
                 <scope>compile</scope>
             </dependency>
+
             <dependency>
-                <groupId>org.xhtmlrenderer</groupId>
-                <artifactId>flying-saucer-pdf</artifactId>
-                <version>9.0.7</version>
-                <type>jar</type>
-                <scope>compile</scope>
+                <groupId>com.openhtmltopdf</groupId>
+                <artifactId>openhtmltopdf-core</artifactId>
+                <version>${openhtmltopdf.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.openhtmltopdf</groupId>
+                <artifactId>openhtmltopdf-pdfbox</artifactId>
+                <version>${openhtmltopdf.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.jsoup</groupId>
                 <artifactId>jsoup</artifactId>

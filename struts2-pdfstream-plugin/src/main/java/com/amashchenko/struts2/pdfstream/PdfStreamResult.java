@@ -15,9 +15,7 @@
  */
 package com.amashchenko.struts2.pdfstream;
 
-import java.io.IOException;
 import java.io.OutputStream;
-import java.net.URISyntaxException;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -30,10 +28,9 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Entities.EscapeMode;
-import org.xhtmlrenderer.pdf.ITextRenderer;
 
-import com.lowagie.text.DocumentException;
-import com.lowagie.text.pdf.BaseFont;
+import com.openhtmltopdf.pdfboxout.PdfBoxRenderer;
+import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.inject.Container;
@@ -235,16 +232,19 @@ public class PdfStreamResult extends StrutsResultSupport {
     }
 
     private void createPdfStream(final String content, final String baseUrl,
-                    final OutputStream outputStream) throws DocumentException,
-                    IOException, URISyntaxException {
-        ITextRenderer renderer = new ITextRenderer();
-        // for unicode
-        renderer.getFontResolver().addFont(FONT_FILE_PATH, BaseFont.IDENTITY_H,
-                        BaseFont.EMBEDDED);
+                    final OutputStream outputStream) throws Exception {
 
-        renderer.setDocumentFromString(content, baseUrl);
+        PdfRendererBuilder builder = new PdfRendererBuilder();
+
+        builder.withHtmlContent(content, baseUrl);
+        builder.toStream(outputStream);
+
+        PdfBoxRenderer renderer = builder.buildPdfRenderer();
+        renderer.getFontResolver().addFont(
+                        this.getClass().getResourceAsStream(FONT_FILE_PATH),
+                        "DejaVu Sans");
         renderer.layout();
-        renderer.createPDF(outputStream);
+        renderer.createPDF();
     }
 
     String findBaseUrl(final HttpServletRequest request) {
