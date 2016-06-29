@@ -65,7 +65,7 @@
         </dependency>
         <dependency>
             <groupId>com.amashchenko.struts2.pdfstream</groupId>
-            <artifactId>struts2-pdfstream-tiles3</artifactId>
+            <artifactId>struts2-pdfstream-tiles</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -86,6 +86,11 @@
         </dependency>
         <dependency>
             <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-tiles-plugin</artifactId>
+            <version>${struts2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.struts</groupId>
             <artifactId>struts2-junit-plugin</artifactId>
         </dependency>
         <dependency>
@@ -99,19 +104,6 @@
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>jsp-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.struts</groupId>
-            <artifactId>struts2-tiles3-plugin</artifactId>
-            <version>${struts2.version}</version>
-            <type>jar</type>
-            <scope>compile</scope>
-            <exclusions>
-                <exclusion>
-                    <artifactId>tiles-extras</artifactId>
-                    <groupId>org.apache.tiles</groupId>
-                </exclusion>
-            </exclusions>
         </dependency>
     </dependencies>
 </project>

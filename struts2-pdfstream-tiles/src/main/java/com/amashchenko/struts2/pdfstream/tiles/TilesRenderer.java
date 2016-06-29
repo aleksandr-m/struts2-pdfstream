@@ -22,14 +22,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tiles.TilesContainer;
-import org.apache.tiles.TilesException;
 import org.apache.tiles.access.TilesAccess;
+import org.apache.tiles.request.ApplicationContext;
+import org.apache.tiles.request.servlet.ServletRequest;
+import org.apache.tiles.request.servlet.ServletUtil;
 
 import com.amashchenko.struts2.pdfstream.ViewRenderer;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
- * Apache Tiles 2.x renderer.
+ * Apache Tiles 3.x renderer.
  * 
  * @author Aleksandr Mashchenko
  * 
@@ -41,9 +43,12 @@ public class TilesRenderer implements ViewRenderer {
     public void render(final String location, final HttpServletRequest request,
                     final HttpServletResponse response,
                     final ServletContext servletContext, final Locale locale,
-                    final ValueStack valueStack, final Object action)
-                    throws TilesException {
-        TilesContainer container = TilesAccess.getContainer(servletContext);
-        container.render(location, request, response);
+                    final ValueStack valueStack, final Object action) {
+        ApplicationContext applicationContext = ServletUtil
+                        .getApplicationContext(servletContext);
+        TilesContainer container = TilesAccess.getContainer(applicationContext);
+        ServletRequest servletRequest = new ServletRequest(applicationContext,
+                        request, response);
+        container.render(location, servletRequest);
     }
 }

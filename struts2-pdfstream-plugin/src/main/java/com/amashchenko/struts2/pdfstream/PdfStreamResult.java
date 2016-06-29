@@ -23,7 +23,9 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.dispatcher.StrutsResultSupport;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.struts2.result.StrutsResultSupport;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -35,8 +37,6 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.inject.Container;
 import com.opensymphony.xwork2.inject.Inject;
-import com.opensymphony.xwork2.util.logging.Logger;
-import com.opensymphony.xwork2.util.logging.LoggerFactory;
 
 /**
  * <!-- START SNIPPET: description -->
@@ -99,17 +99,15 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * 
  */
 public class PdfStreamResult extends StrutsResultSupport {
-    private static final long serialVersionUID = -1243295451653518563L;
+    private static final long serialVersionUID = -4531005098299094019L;
 
-    /** Logger. */
-    private static final Logger LOG = LoggerFactory
-                    .getLogger(PdfStreamResult.class);
+    private static final Logger LOG = LogManager.getLogger();
 
-    private final static String PDF_MIME_TYPE = "application/pdf";
+    private static final String PDF_MIME_TYPE = "application/pdf";
 
-    private final static String FONT_FILE_PATH = "/fonts/DejaVuSans.ttf";
+    private static final String FONT_FILE_PATH = "/fonts/DejaVuSans.ttf";
 
-    private final static String FONT_STYLE_TAG = "<style type=\"text/css\">body{font-family:DejaVu Sans;}</style>";
+    private static final String FONT_STYLE_TAG = "<style type=\"text/css\">body{font-family:DejaVu Sans;}</style>";
 
     private String contentDisposition = "inline";
 
@@ -125,10 +123,8 @@ public class PdfStreamResult extends StrutsResultSupport {
     @Override
     protected void doExecute(String finalLocation, ActionInvocation invocation)
                     throws Exception {
-        if (LOG.isDebugEnabled()) {
-            LOG.debug("In doExecute. finalLocation: " + finalLocation
-                            + ", renderer: " + renderer);
-        }
+        LOG.debug("In doExecute. finalLocation: {}, renderer: {}",
+                        finalLocation, renderer);
 
         OutputStream os = null;
         try {
@@ -179,10 +175,8 @@ public class PdfStreamResult extends StrutsResultSupport {
                 response.addHeader("Cache-Control", "no-cache");
             }
 
-            if (LOG.isTraceEnabled()) {
-                LOG.trace("Content before parsing:\n"
-                                + responseWrapper.toString());
-            }
+            LOG.trace("Content before parsing:\n {}",
+                            responseWrapper.toString());
 
             // parse response wrapper
             final Document document = parseContent(responseWrapper.toString());
@@ -205,9 +199,7 @@ public class PdfStreamResult extends StrutsResultSupport {
 
             final String content = document.html();
 
-            if (LOG.isTraceEnabled()) {
-                LOG.trace("Content after parsing:\n" + content);
-            }
+            LOG.trace("Content after parsing:\n {}", content);
 
             // put pdf stream into response
             createPdfStream(content, findBaseUrl(request),
@@ -233,7 +225,6 @@ public class PdfStreamResult extends StrutsResultSupport {
 
     private void createPdfStream(final String content, final String baseUrl,
                     final OutputStream outputStream) throws Exception {
-
         PdfRendererBuilder builder = new PdfRendererBuilder();
 
         builder.withHtmlContent(content, baseUrl);
