@@ -32,7 +32,7 @@ public class PdfStreamAction extends ActionSupport {
     private List<Integer> list;
 
     public String createList() {
-        list = new ArrayList<Integer>();
+        list = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             list.add(i);
         }

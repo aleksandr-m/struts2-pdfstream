@@ -43,14 +43,17 @@ public class SimpleServletResponseWrapper extends HttpServletResponseWrapper {
                         this.stream);
     }
 
+    @Override
     public PrintWriter getWriter() throws IOException {
         return printWriter;
     }
 
+    @Override
     public ServletOutputStream getOutputStream() throws IOException {
         return simpleServletOutputStream;
     }
 
+    @Override
     public String toString() {
         // flush printWriter before calling toString() on underlying stream
         printWriter.flush();

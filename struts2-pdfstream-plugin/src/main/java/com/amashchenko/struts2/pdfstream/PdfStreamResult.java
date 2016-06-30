@@ -126,89 +126,78 @@ public class PdfStreamResult extends StrutsResultSupport {
         LOG.debug("In doExecute. finalLocation: {}, renderer: {}",
                         finalLocation, renderer);
 
-        OutputStream os = null;
-        try {
-            final ActionContext actionContext = invocation
-                            .getInvocationContext();
-            final HttpServletRequest request = (HttpServletRequest) actionContext
-                            .get(HTTP_REQUEST);
-            final HttpServletResponse response = (HttpServletResponse) actionContext
-                            .get(HTTP_RESPONSE);
-            final SimpleServletResponseWrapper responseWrapper = new SimpleServletResponseWrapper(
-                            response);
-            final ServletContext servletContext = (ServletContext) actionContext
-                            .get(SERVLET_CONTEXT);
+        final ActionContext actionContext = invocation.getInvocationContext();
+        final HttpServletRequest request = (HttpServletRequest) actionContext
+                        .get(HTTP_REQUEST);
+        final HttpServletResponse response = (HttpServletResponse) actionContext
+                        .get(HTTP_RESPONSE);
+        final SimpleServletResponseWrapper responseWrapper = new SimpleServletResponseWrapper(
+                        response);
+        final ServletContext servletContext = (ServletContext) actionContext
+                        .get(SERVLET_CONTEXT);
 
-            ViewRenderer viewRenderer;
-            if (renderer == null) {
-                viewRenderer = container.getInstance(ViewRenderer.class);
-            } else {
-                viewRenderer = container.getInstance(ViewRenderer.class,
-                                renderer);
-            }
+        ViewRenderer viewRenderer;
+        if (renderer == null) {
+            viewRenderer = container.getInstance(ViewRenderer.class);
+        } else {
+            viewRenderer = container.getInstance(ViewRenderer.class, renderer);
+        }
 
-            if (viewRenderer == null) {
-                final String err = "Cannot get an instance of ViewRenderer with the name '"
-                                + renderer + "'.";
-                LOG.error(err);
-                throw new AssertionError(err);
-            }
+        if (viewRenderer == null) {
+            final String err = "Cannot get an instance of ViewRenderer with the name '"
+                            + renderer + "'.";
+            LOG.error(err);
+            throw new AssertionError(err);
+        }
 
-            // render view
-            viewRenderer.render(finalLocation, request, responseWrapper,
-                            servletContext, actionContext.getLocale(),
-                            invocation.getStack(), invocation.getAction());
+        // render view
+        viewRenderer.render(finalLocation, request, responseWrapper,
+                        servletContext, actionContext.getLocale(),
+                        invocation.getStack(), invocation.getAction());
 
-            // Set the content type
-            response.setContentType(PDF_MIME_TYPE);
+        // Set the content type
+        response.setContentType(PDF_MIME_TYPE);
 
-            // Set the content-disposition
-            if (contentDisposition != null) {
-                response.addHeader(
-                                "Content-Disposition",
-                                conditionalParse(contentDisposition, invocation));
-            }
+        // Set the content-disposition
+        if (contentDisposition != null) {
+            response.addHeader("Content-Disposition",
+                            conditionalParse(contentDisposition, invocation));
+        }
 
-            // Set the cache control headers if necessary
-            if (!allowCaching) {
-                response.addHeader("Pragma", "no-cache");
-                response.addHeader("Cache-Control", "no-cache");
-            }
+        // Set the cache control headers if necessary
+        if (!allowCaching) {
+            response.addHeader("Pragma", "no-cache");
+            response.addHeader("Cache-Control", "no-cache");
+        }
 
-            LOG.trace("Content before parsing:\n {}",
-                            responseWrapper.toString());
+        LOG.trace("Content before parsing:\n {}", responseWrapper.toString());
 
-            // parse response wrapper
-            final Document document = parseContent(responseWrapper.toString());
-            final Element head = document.head();
+        // parse response wrapper
+        final Document document = parseContent(responseWrapper.toString());
+        final Element head = document.head();
 
-            // add CSS from cssPathsSet parameter
-            if (cssPathsSet != null && !cssPathsSet.isEmpty()) {
-                for (String css : cssPathsSet) {
-                    // remove leading slash
-                    if (css.startsWith("\\")) {
-                        css = css.substring(1);
-                    }
-                    head.append("<link rel=\"stylesheet\" type=\"text/css\" href=\""
-                                    + css + "\" />");
+        // add CSS from cssPathsSet parameter
+        if (cssPathsSet != null && !cssPathsSet.isEmpty()) {
+            for (String css : cssPathsSet) {
+                // remove leading slash
+                if (css.startsWith("\\")) {
+                    css = css.substring(1);
                 }
-            }
-
-            // add style for font family that supports unicode
-            head.append(FONT_STYLE_TAG);
-
-            final String content = document.html();
-
-            LOG.trace("Content after parsing:\n {}", content);
-
-            // put pdf stream into response
-            createPdfStream(content, findBaseUrl(request),
-                            response.getOutputStream());
-        } finally {
-            if (os != null) {
-                os.close();
+                head.append("<link rel=\"stylesheet\" type=\"text/css\" href=\""
+                                + css + "\" />");
             }
         }
+
+        // add style for font family that supports unicode
+        head.append(FONT_STYLE_TAG);
+
+        final String content = document.html();
+
+        LOG.trace("Content after parsing:\n {}", content);
+
+        // put pdf stream into response
+        createPdfStream(content, findBaseUrl(request),
+                        response.getOutputStream());
     }
 
     Document parseContent(final String content) {
@@ -254,7 +243,7 @@ public class PdfStreamResult extends StrutsResultSupport {
     }
 
     public void setCssPaths(final String cssPaths) {
-        cssPathsSet = stringToSet(cssPaths);
+        this.cssPathsSet = stringToSet(cssPaths);
     }
 
     /**
@@ -269,7 +258,7 @@ public class PdfStreamResult extends StrutsResultSupport {
         if (str == null || str.trim().isEmpty()) {
             set = null;
         } else {
-            set = new LinkedHashSet<String>();
+            set = new LinkedHashSet<>();
             String[] split = str.split(",");
             for (String s : split) {
                 String trimmed = s.trim();

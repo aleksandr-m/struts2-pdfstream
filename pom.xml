@@ -64,7 +64,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.6</java.version>
+        <java.version>1.7</java.version>
         <struts2.version>2.5</struts2.version>
         <openhtmltopdf.version>0.0.1-RC3</openhtmltopdf.version>
         <log4j2.version>2.6.1</log4j2.version>
