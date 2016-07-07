@@ -66,7 +66,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.7</java.version>
         <struts2.version>2.5</struts2.version>
-        <openhtmltopdf.version>0.0.1-RC3</openhtmltopdf.version>
+        <openhtmltopdf.version>0.0.1-RC4</openhtmltopdf.version>
         <log4j2.version>2.6.1</log4j2.version>
         <scm.url>scm:git:git@github.com:aleksandr-m/struts2-pdfstream.git</scm.url>
         <url>https://github.com/aleksandr-m/struts2-pdfstream</url>
@@ -188,8 +188,6 @@
                 <artifactId>log4j-jcl</artifactId>
                 <version>${log4j2.version}</version>
             </dependency>
-
-
             <dependency>
                 <groupId>com.openhtmltopdf</groupId>
                 <artifactId>openhtmltopdf-core</artifactId>
@@ -200,7 +198,6 @@
                 <artifactId>openhtmltopdf-pdfbox</artifactId>
                 <version>${openhtmltopdf.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.jsoup</groupId>
                 <artifactId>jsoup</artifactId>
