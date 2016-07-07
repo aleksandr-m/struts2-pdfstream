@@ -1,5 +1,8 @@
 # Struts2 PDF Stream Plugin
 
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.amashchenko.struts2.pdfstream/struts2-pdfstream-plugin/badge.svg?subject=Maven Central)](https://maven-badges.herokuapp.com/maven-central/com.amashchenko.struts2.pdfstream/struts2-pdfstream-plugin/)
+[![License](https://img.shields.io/badge/License-Apache License 2.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
+
 The PDF Stream plugin allows to transform a view into a PDF stream and return it as a result from Action.
 
 Default supported views:
@@ -7,8 +10,24 @@ Default supported views:
 - HTML
 - JSP
 - FreeMarker template
-- Apache Tiles 2.x definition
-- Apache Tiles 3.x definition
+- Apache Tiles definition
+
+
+## Struts2 PDF Stream v2
+
+#### Apache PDFBox 2
+
+Starting from 2.0.0, HTML into PDF rendering is done by the [openhtmltopdf](https://github.com/danfickle/openhtmltopdf) library which uses the [Apache PDFBox 2](https://pdfbox.apache.org/) to create PDF documents.
+Apache PDFBox 2 is an open source Java tool for working with PDF documents and it is published under the Apache License v2.0.
+
+#### Apache Struts 2.5
+
+Upgraded to be compatible with Apache Struts 2.5
+
+#### Java 7
+
+Switched to Java 7 
+
 
 
 ## Features Overview
@@ -23,7 +42,7 @@ Default supported views:
 
 Showcase application can be downloaded from the Maven Central Repository.
 
-[Download struts2-pdfstream-showcase](http://search.maven.org/remotecontent?filepath=com/amashchenko/struts2/pdfstream/struts2-pdfstream-showcase/1.3.0/struts2-pdfstream-showcase-1.3.0.war)
+[Download struts2-pdfstream-showcase](http://search.maven.org/remotecontent?filepath=com/amashchenko/struts2/pdfstream/struts2-pdfstream-showcase/2.0.0/struts2-pdfstream-showcase-2.0.0.war)
 
 
 ## Contributing
@@ -39,12 +58,12 @@ If you have questions about how to use `struts2-pdfstream-plugin` [create a new 
 
 Copy following jars into your classpath (WEB-INF/lib):
 
-- struts2-pdfstream-plugin-1.3.0.jar
-- flying-saucer-core-9.0.7.jar
-- flying-saucer-pdf-9.0.7.jar
-- itext-2.1.7.jar
-- jsoup-1.8.1.jar
-
+- struts2-pdfstream-plugin-2.0.0.jar
+- jsoup-1.9.2.jar
+- openhtmltopdf-core-0.0.1-RC4.jar
+- openhtmltopdf-pdfbox-0.0.1-RC4.jar
+- pdfbox-2.0.0.jar
+- fontbox-2.0.0.jar
 
 If you are using Maven, add this to your project POM:
 
@@ -53,33 +72,25 @@ If you are using Maven, add this to your project POM:
         <dependency>
             <groupId>com.amashchenko.struts2.pdfstream</groupId>
             <artifactId>struts2-pdfstream-plugin</artifactId>
-            <version>1.3.0</version>
+            <version>2.0.0</version>
         </dependency>
         ...
     </dependencies>
 
 If you intend to transform Apache Tiles definition additional jar must be included.
 
-For the Apache Tiles 2.x support add the `struts2-pdfstream-tiles`.
+For the Apache Tiles support add the `struts2-pdfstream-tiles`.
 
     <dependency>
         <groupId>com.amashchenko.struts2.pdfstream</groupId>
         <artifactId>struts2-pdfstream-tiles</artifactId>
-        <version>1.3.0</version>
-    </dependency>
-        
-For the Apache Tiles 3.x support add the `struts2-pdfstream-tiles3`.
-
-    <dependency>
-        <groupId>com.amashchenko.struts2.pdfstream</groupId>
-        <artifactId>struts2-pdfstream-tiles3</artifactId>
-        <version>1.3.0</version>
+        <version>2.0.0</version>
     </dependency>
 
 
 ## Usage
 
-1. Install this plugin by adding dependency to your POM or by copying jar into /WEB-INF/lib directory.
+1. Install this plugin by adding dependency to your POM or by copying jars into /WEB-INF/lib directory.
 2. Make your action package extend `pdfstream-default` package or add `pdfstream` result type.
 3. Use `pdfstream` result type.
 

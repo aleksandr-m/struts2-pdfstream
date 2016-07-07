@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2015 Aleksandr Mashchenko.
+ * Copyright 2014-2016 Aleksandr Mashchenko.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ public class PdfStreamAction extends ActionSupport {
     private List<Integer> list;
 
     public String createList() {
-        list = new ArrayList<Integer>();
+        list = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             list.add(i);
         }

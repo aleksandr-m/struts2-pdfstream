@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2015 Aleksandr Mashchenko.
+ * Copyright 2014-2016 Aleksandr Mashchenko.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,14 +43,17 @@ public class SimpleServletResponseWrapper extends HttpServletResponseWrapper {
                         this.stream);
     }
 
+    @Override
     public PrintWriter getWriter() throws IOException {
         return printWriter;
     }
 
+    @Override
     public ServletOutputStream getOutputStream() throws IOException {
         return simpleServletOutputStream;
     }
 
+    @Override
     public String toString() {
         // flush printWriter before calling toString() on underlying stream
         printWriter.flush();
