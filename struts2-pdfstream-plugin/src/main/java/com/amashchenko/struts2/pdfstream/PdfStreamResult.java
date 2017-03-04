@@ -15,6 +15,7 @@
  */
 package com.amashchenko.struts2.pdfstream;
 
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -31,7 +32,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Entities.EscapeMode;
 
-import com.openhtmltopdf.pdfboxout.PdfBoxRenderer;
+import com.openhtmltopdf.extend.FSSupplier;
 import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
@@ -107,6 +108,8 @@ public class PdfStreamResult extends StrutsResultSupport {
 
     private static final String FONT_FILE_PATH = "/fonts/DejaVuSans.ttf";
 
+    private static final String FONT_FAMILY = "DejaVu Sans";
+
     private static final String FONT_STYLE_TAG = "<style type=\"text/css\">body{font-family:DejaVu Sans;}</style>";
 
     private String contentDisposition = "inline";
@@ -170,7 +173,7 @@ public class PdfStreamResult extends StrutsResultSupport {
             response.addHeader("Cache-Control", "no-cache");
         }
 
-        LOG.trace("Content before parsing:\n {}", responseWrapper.toString());
+        LOG.trace("Content before parsing:\n {}", responseWrapper);
 
         // parse response wrapper
         final Document document = parseContent(responseWrapper.toString());
@@ -216,15 +219,17 @@ public class PdfStreamResult extends StrutsResultSupport {
                     final OutputStream outputStream) throws Exception {
         PdfRendererBuilder builder = new PdfRendererBuilder();
 
+        builder.useFont(new FSSupplier<InputStream>() {
+            @Override
+            public InputStream supply() {
+                return this.getClass().getResourceAsStream(FONT_FILE_PATH);
+            }
+        }, FONT_FAMILY);
+
         builder.withHtmlContent(content, baseUrl);
         builder.toStream(outputStream);
 
-        PdfBoxRenderer renderer = builder.buildPdfRenderer();
-        renderer.getFontResolver().addFont(
-                        this.getClass().getResourceAsStream(FONT_FILE_PATH),
-                        "DejaVu Sans");
-        renderer.layout();
-        renderer.createPDF();
+        builder.run();
     }
 
     String findBaseUrl(final HttpServletRequest request) {
