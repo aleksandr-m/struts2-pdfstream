@@ -95,10 +95,11 @@
                 <plugin>
                     <groupId>com.amashchenko.maven.plugin</groupId>
                     <artifactId>gitflow-maven-plugin</artifactId>
-                    <version>1.2.3</version>
+                    <version>1.4.0</version>
                     <configuration>
                        <installProject>true</installProject>
                        <gitFlowConfig>
+                           <developmentBranch>master</developmentBranch>
                            <versionTagPrefix>v</versionTagPrefix>
                        </gitFlowConfig>
                     </configuration>
