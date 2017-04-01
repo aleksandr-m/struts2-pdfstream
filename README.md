@@ -1,7 +1,7 @@
 # Struts2 PDF Stream Plugin
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.amashchenko.struts2.pdfstream/struts2-pdfstream-plugin/badge.svg?subject=Maven Central)](https://maven-badges.herokuapp.com/maven-central/com.amashchenko.struts2.pdfstream/struts2-pdfstream-plugin/)
-[![License](https://img.shields.io/badge/License-Apache License 2.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.amashchenko.struts2.pdfstream/struts2-pdfstream-plugin/badge.svg?subject=Maven%20Central)](https://maven-badges.herokuapp.com/maven-central/com.amashchenko.struts2.pdfstream/struts2-pdfstream-plugin/)
+[![License](https://img.shields.io/badge/License-Apache%20License%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 The PDF Stream plugin allows to transform a view into a PDF stream and return it as a result from Action.
 
@@ -34,8 +34,8 @@ Switched to Java 7
 
 - Direct transformation of HTML, JSP, FreeMarker template and Apache Tiles definition to PDF via Struts2 result
 - PDF content styling using CSS
-- Support of wide range of characters in PDF thanks to the [DejaVu fonts](http://dejavu-fonts.org/)
-- Handling of the malformed HTML thanks to the [jsoup](http://jsoup.org/)
+- Support of wide range of characters in PDF thanks to the [DejaVu fonts](https://dejavu-fonts.github.io/)
+- Handling of the malformed HTML thanks to the [jsoup](https://jsoup.org/)
 
 
 ## Showcase
