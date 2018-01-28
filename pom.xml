@@ -65,9 +65,9 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.7</java.version>
-        <struts2.version>2.5.10.1</struts2.version>
-        <openhtmltopdf.version>0.0.1-RC9</openhtmltopdf.version>
-        <log4j2.version>2.7</log4j2.version>
+        <struts2.version>2.5.14.1</struts2.version>
+        <openhtmltopdf.version>0.0.1-RC12</openhtmltopdf.version>
+        <log4j2.version>2.10.0</log4j2.version>
         <scm.url>scm:git:git@github.com:aleksandr-m/struts2-pdfstream.git</scm.url>
         <url>https://github.com/aleksandr-m/struts2-pdfstream</url>
     </properties>
@@ -85,7 +85,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.5.1</version>
+                    <version>3.7.0</version>
                     <configuration>
                         <source>${java.version}</source>
                         <target>${java.version}</target>
@@ -95,7 +95,7 @@
                 <plugin>
                     <groupId>com.amashchenko.maven.plugin</groupId>
                     <artifactId>gitflow-maven-plugin</artifactId>
-                    <version>1.4.0</version>
+                    <version>1.9.0</version>
                     <configuration>
                        <installProject>true</installProject>
                        <gitFlowConfig>
@@ -116,7 +116,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
-                        <version>3.0.0</version>
+                        <version>3.0.1</version>
                         <executions>
                             <execution>
                                 <id>attach-sources</id>
@@ -129,7 +129,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>2.10.4</version>
+                        <version>3.0.0</version>
                         <executions>
                             <execution>
                                 <id>attach-javadocs</id>
