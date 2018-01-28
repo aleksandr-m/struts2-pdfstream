@@ -42,7 +42,7 @@ Switched to Java 7
 
 Showcase application can be downloaded from the Maven Central Repository.
 
-[Download struts2-pdfstream-showcase](http://search.maven.org/remotecontent?filepath=com/amashchenko/struts2/pdfstream/struts2-pdfstream-showcase/2.0.0/struts2-pdfstream-showcase-2.0.0.war)
+[Download struts2-pdfstream-showcase](https://search.maven.org/remotecontent?filepath=com/amashchenko/struts2/pdfstream/struts2-pdfstream-showcase/2.0.0/struts2-pdfstream-showcase-2.0.0.war)
 
 
 ## Contributing
@@ -51,7 +51,7 @@ Found a bug or have a feature request? [Create a new issue](https://github.com/a
 
 ## Questions
 
-If you have questions about how to use `struts2-pdfstream-plugin` [create a new issue](https://github.com/aleksandr-m/struts2-pdfstream/issues/new) or ask a question on [Stack Overflow](http://stackoverflow.com/questions/tagged/struts2-pdfstream-plugin).
+If you have questions about how to use `struts2-pdfstream-plugin` [create a new issue](https://github.com/aleksandr-m/struts2-pdfstream/issues/new) or ask a question on [Stack Overflow](https://stackoverflow.com/questions/tagged/struts2-pdfstream-plugin).
 
 
 ## Installation
