@@ -65,7 +65,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.7</java.version>
-        <struts2.version>2.5.17</struts2.version>
+        <struts2.version>2.5.22</struts2.version>
         <openhtmltopdf.version>0.0.1-RC16</openhtmltopdf.version>
         <log4j2.version>2.13.3</log4j2.version>
         <scm.url>scm:git:git@github.com:aleksandr-m/struts2-pdfstream.git</scm.url>
