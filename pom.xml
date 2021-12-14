@@ -67,7 +67,7 @@
         <java.version>1.7</java.version>
         <struts2.version>2.5.17</struts2.version>
         <openhtmltopdf.version>0.0.1-RC16</openhtmltopdf.version>
-        <log4j2.version>2.13.3</log4j2.version>
+        <log4j2.version>2.16.0</log4j2.version>
         <scm.url>scm:git:git@github.com:aleksandr-m/struts2-pdfstream.git</scm.url>
         <url>https://github.com/aleksandr-m/struts2-pdfstream</url>
     </properties>
